@@ -3,6 +3,8 @@
 import { initializeApp } from "firebase/app";
 import { getStorage, listAll, ref, getDownloadURL } from "firebase/storage";
 import { useEffect, useState } from "react";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const firebaseConfig = {
   apiKey: "AIzaSyD0eyX6bAMBNt5fd1ZDOYW7G903AYosZk4",
@@ -39,47 +41,36 @@ export default function Home() {
     fetchImages();
   }, []);
 
-  const containerStyle = {
-    display: 'grid',
-    gridTemplateColumns: 'repeat(auto-fill, minmax(50px, 1fr))', // Adjust minmax for desired tile size
-    gap: '1px', // Adjust gap for spacing between images
-    width: '80%', // Adjust width of the mosaic
-    margin: '20px auto', // Center the mosaic
-  };
-
-  const imageStyle = {
-    width: '100%',
-    height: 'auto',
-    objectFit: 'cover',
-    borderRadius: '3px',
-    transition: 'opacity 0.3s ease-in-out',
-  };
-
   return (
-    <div style={{
-      backgroundColor: 'hsl(var(--background))',
-      color: 'hsl(var(--foreground))',
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      padding: '20px'
-    }}>
-      <h1 style={{ color: 'hsl(var(--accent))', marginBottom: '20px' }}>Mosaic Face</h1>
-      {loading ? (
-        <p>Loading images...</p>
-      ) : (
-        <div style={containerStyle}>
-          {imageUrls.map((url, index) => (
-            <img
-              key={index}
-              src={url}
-              alt={`Mosaic tile ${index}`}
-              style={imageStyle}
-            />
-          ))}
-        </div>
-      )}
+    <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-background">
+      <Card className="w-full max-w-4xl shadow-md rounded-lg">
+        <CardHeader>
+          <CardTitle className="text-2xl font-bold text-center">ASIU104- Adrian Piper Style</CardTitle>
+          <CardDescription className="text-center text-muted-foreground">
+            A mosaic of faces in the style of Adrian Piper.
+          </CardDescription>
+        </CardHeader>
+        <CardContent className="p-4">
+          {loading ? (
+            <div className="grid grid-cols-4 gap-2">
+              {Array.from({ length: 20 }).map((_, index) => (
+                <Skeleton key={index} className="w-full aspect-square rounded-md" />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-4 gap-2">
+              {imageUrls.map((url, index) => (
+                <img
+                  key={index}
+                  src={url}
+                  alt={`Mosaic tile ${index}`}
+                  className="w-full aspect-square object-cover rounded-md transition-opacity duration-300 opacity-90 hover:opacity-100"
+                />
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
     </div>
   );
 }
