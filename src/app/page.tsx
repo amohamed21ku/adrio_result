@@ -47,7 +47,7 @@ export default function Home() {
         <CardHeader>
           <CardTitle className="text-2xl font-bold text-center">ASIU104- Adrian Piper Style</CardTitle>
           <CardDescription className="text-center text-muted-foreground">
-            A mosaic of faces in the style of Adrian Piper.
+            Our Class Art :/
           </CardDescription>
         </CardHeader>
         <CardContent className="p-4">
