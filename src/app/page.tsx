@@ -45,7 +45,7 @@ export default function Home() {
     <div className="flex flex-col items-center justify-center min-h-screen py-2 bg-background">
       <Card className="w-full max-w-4xl shadow-md rounded-lg">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-center">ASIU104- Adrian Piper Style</CardTitle>
+          <CardTitle className="text-2xl font-bold text-center" style={{ color: 'darkred' }}>ASIU104- Adrian Piper Style</CardTitle>
           <CardDescription className="text-center text-muted-foreground">
             Our Class Art :/
           </CardDescription>
